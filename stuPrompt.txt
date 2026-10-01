@@ -1,0 +1,66 @@
+You are a senior frontend architect. Build the UI for a School Management System as a production-quality web app.
+
+## Stack
+- React 18 + TypeScript (strict) + Vite
+- Tailwind CSS + shadcn/ui (use shadcn components everywhere; no raw HTML form controls)
+- TanStack Table for data grids, TanStack Query for server state
+- React Hook Form + Zod for forms and validation
+- Zustand for UI state (sidebar, theme, current role)
+- React Router v6, Recharts for charts, lucide-react for icons
+- Mock API: MSW with realistic seeded data (use @faker-js/faker, Indian names, CBSE classes 1-12, sections A-D)
+
+## Architecture
+- Feature-based folders: src/features/<module>/{api,components,pages,schemas,types}
+- All API calls go through src/lib/api-client.ts so the mock can later be swapped for a real REST backend
+- Shared components in src/components/shared
+
+## Design
+- Clean, dense admin aesthetic (like Linear or Vercel dashboard), not generic Bootstrap
+- Design tokens in a theme file: colors, typography scale, spacing, radius; full light/dark mode
+- Collapsible sidebar, top bar with global search (Cmd+K), role switcher, notifications
+- Fully responsive; attendance and marks screens must work well on mobile
+
+## Roles
+Admin, Teacher, Parent, Student. Navigation and dashboard widgets change per role. Store the permission matrix in one config file.
+
+## Rules
+- Every list screen: search, filters, sorting, pagination, column toggle, bulk select, CSV export
+- Every screen: skeleton loading, empty state with a "create" action, error state with retry
+- Create/Edit: side drawer for short forms, multi-step wizard for long forms
+- Delete: confirmation dialog, soft delete, undo toast
+- Write a CLAUDE.md documenting these conventions
+
+## Phase 1 (do now)
+Scaffold the project, theme and design tokens, app shell (sidebar, topbar, routing, role switcher), MSW setup, and these generic reusable components:
+- DataTable (config-driven columns, filters, bulk actions, export)
+- FormDrawer (RHF + Zod, generic)
+- DetailTabs (tabbed profile layout)
+- ConfirmDialog, EmptyState, PageHeader, StatCard
+Add placeholder routes for all modules. Run tsc and lint, fix all errors, then stop and summarize.
+
+Phase 2: Dashboard. Role-based dashboards using StatCard and Recharts: total students, today's attendance %, fee collection vs target, upcoming exams, recent announcements, quick actions. Different widgets per role.
+
+Phase 3: Students module. List page using DataTable (filters: class, section, status, gender), bulk actions (promote, export, send message), CSV import with preview and validation. Student profile with DetailTabs: Overview, Academics, Attendance, Fees, Documents, Parents. Admission as a 5-step wizard (personal, parent, previous school, documents, review) with draft save.
+
+Phase 4: Teachers and Staff. Same list/profile pattern. Add subject and class assignment UI and a leave request screen.
+
+Phase 5: Academics. Classes and sections tree view with class teacher assignment. Weekly timetable builder with drag-and-drop (dnd-kit) and teacher conflict warnings. Subjects CRUD.
+
+Phase 6: Attendance. Mobile-first marking screen per class: all present by default, tap to toggle absent/late, sticky save bar. Monthly calendar heatmap per student and class-level attendance report.
+
+Phase 7: Exams. Exam and schedule CRUD. Spreadsheet-style marks entry grid (students × subjects) with keyboard navigation, auto-save, and grade calculation from a configurable grading scheme. Printable report card with PDF export.
+
+Phase 8: Fees. Fee structure setup (heads, installments, concessions per class). Collection screen: search student, show dues, record payment, print receipt. Defaulters report with reminder action.
+
+Phase 9: Communication and settings. Announcements with audience targeting, homework posting and viewing, academic year settings, roles and permissions matrix editor, school profile. Final pass: accessibility audit, consistent empty/error states, and a responsive check on every page.
+
+
+CRM
+ERP
+Retail
+E-commerce
+Asset Management System
+Education
+HealthCare
+Banking
+Inventory Management System
