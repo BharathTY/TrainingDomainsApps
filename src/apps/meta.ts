@@ -91,10 +91,10 @@ export const APP_META: AppMeta[] = [
   {
     id: "inventory",
     basePath: "/inventory",
-    name: "Inventory",
-    description: "Warehouses, items, and movements.",
-    themeColor: "#a16207",
-    enabled: false,
+    name: "StockWise IMS",
+    description: "Multi-warehouse stock for a distributor.",
+    themeColor: "#5E2A6B",
+    enabled: true,
     basicAuth,
   },
 ]

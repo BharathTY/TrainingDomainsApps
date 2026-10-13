@@ -27,6 +27,14 @@ Feature code lives under `src/apps/schoolmanagement/features/<module>/{api,compo
 - Required fields are marked with `*` and rejected by Zod. Search boxes stay optional.
 - Module paths in the permission table are segments (`students`), not absolute URLs.
 
+## StockWise IMS (`/inventory`)
+
+The launcher card is enabled. Screens live under `src/apps/inventory` and use the same plum shell as School Management.
+
+- Items, categories, suppliers, warehouses, stock documents, purchase orders, cycle counts, calendar, and reports are backed by Postgres schema `inventory` in database `trainingDomainApps`.
+- `/inventory/secure/stock-valuation` is Basic Auth (`admin` / `admin@123`) and lists warehouse value.
+- Demo users: `admin` / `admin123`, `manager` / `manager123`, `keeper` / `keeper123`, `purchase` / `purchase123`.
+
 ## Sessions and server
 
 - Cookie name `sid_<appId>`, HTTP-only, `SameSite=Lax`, set for both `/<appId>` and `/api/<appId>`.

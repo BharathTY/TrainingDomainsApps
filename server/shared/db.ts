@@ -59,6 +59,8 @@ export type Prepared = {
 export type AppDatabase = {
   exec: (sql: string) => Promise<void>
   prepare: (sql: string) => Prepared
+  query: <T extends QueryResultRow = QueryResultRow>(sql: string, params?: unknown[]) => Promise<T[]>
+  batch: (statements: { sql: string; params?: unknown[] }[]) => Promise<void>
 }
 
 export async function openAppDb(id: string): Promise<AppDatabase> {
@@ -108,6 +110,19 @@ export async function openAppDb(id: string): Promise<AppDatabase> {
           })
         },
       }
+    },
+    query<T extends QueryResultRow = QueryResultRow>(sql: string, params: unknown[] = []) {
+      return withSchema(schema, async (connection) => {
+        const result = await connection.query<T>(toPg(sql), params)
+        return result.rows
+      })
+    },
+    batch(statements) {
+      return withSchema(schema, async (connection) => {
+        for (const statement of statements) {
+          await connection.query(toPg(statement.sql), statement.params ?? [])
+        }
+      })
     },
   }
 }

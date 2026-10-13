@@ -34,8 +34,14 @@ function setSessionCookies(res: Response, app: AppMeta, sid: string, maxAge?: nu
   res.append("Set-Cookie", sessionCookie(name, sid, `/api/${app.id}`, maxAge))
 }
 
-export async function registerAuth(app: Express, meta: AppMeta, db: AppDatabase, users: DemoAccount[]) {
+export type AuthHooks = {
+  onReady?: () => Promise<void>
+  onReset?: () => Promise<void>
+}
+
+export async function registerAuth(app: Express, meta: AppMeta, db: AppDatabase, users: DemoAccount[], hooks?: AuthHooks) {
   if ((await userCount(db)) === 0) await seedUsers(db, users)
+  await hooks?.onReady?.()
 
   app.post(`/api/${meta.id}/login`, async (req, res, next) => {
     try {
@@ -83,6 +89,7 @@ export async function registerAuth(app: Express, meta: AppMeta, db: AppDatabase,
   app.post(`/api/${meta.id}/reset`, async (_req, res, next) => {
     try {
       await seedUsers(db, users)
+      await hooks?.onReset?.()
       res.json({ ok: true })
     } catch (error) {
       next(error)

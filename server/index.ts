@@ -33,6 +33,10 @@ async function start() {
     await register(app, await openAppDb(id))
   }
 
+  app.get("/health", (_req, res) => {
+    res.json({ ok: true })
+  })
+
   app.use("/api", (_req, res) => {
     res.status(404).json({ message: "Not found" })
   })

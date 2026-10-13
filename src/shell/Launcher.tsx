@@ -28,6 +28,11 @@ const cards: Card[] = APP_META.map((app) => ({
   href: app.enabled ? app.basePath : undefined,
 }))
 cards.splice(cards.findIndex((card) => card.id === "schoolmanagement") + 1, 0, USER_MANAGEMENT_PORTAL)
+const ecommerce = cards.find((card) => card.id === "ecommerce")
+if (ecommerce) {
+  ecommerce.href = "https://www.shoppersstack.com/"
+  ecommerce.external = true
+}
 
 export function Launcher() {
   useEffect(() => {
