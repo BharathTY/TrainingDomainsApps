@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Supplier portal</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      label { display: block; margin-top: 0.75rem; }
+      input, select, textarea { width: 100%; max-width: 24rem; margin-top: 0.25rem; }
+      button { margin-top: 1rem; }
+      .result { margin-top: 1rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Supplier delivery notice</h1>
+      <p>Training portal — not a live vendor system.</p>
+    </header>
+    <main>
+      <form id="supplier-form" data-testid="supplier-portal-form">
+        <label>Supplier reference
+          <input id="supplier-ref" name="supplierRef" type="text" required value="SUP-TRAIN-01">
+        </label>
+        <label>PO number
+          <input id="supplier-po" name="poNo" type="text" required pattern="PO[0-9]+">
+        </label>
+        <label>Delivery date
+          <input id="supplier-date" name="deliveryDate" type="date" required>
+        </label>
+        <label>Carrier
+          <select id="supplier-carrier" name="carrier">
+            <option value="road">Road freight</option>
+            <option value="air">Air express</option>
+          </select>
+        </label>
+        <label>Notes
+          <textarea id="supplier-notes" name="notes" rows="3"></textarea>
+        </label>
+        <button type="submit" id="supplier-submit" data-testid="supplier-portal-submit">Submit ASN</button>
+      </form>
+      <p id="supplier-result" class="result" data-testid="supplier-portal-result" aria-live="polite"></p>
+    </main>
+    <script>
+      document.getElementById("supplier-form").addEventListener("submit", function (event) {
+        event.preventDefault()
+        var po = document.getElementById("supplier-po").value
+        document.getElementById("supplier-result").textContent = "ASN logged for " + po + " (synthetic)"
+      })
+    </script>
+  </body>
+</html>

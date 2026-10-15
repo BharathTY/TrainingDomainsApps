@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CRM help guide</title>
+    <style>body{font-family:system-ui,sans-serif;margin:1rem}label{display:block;margin-top:.5rem}</style>
+  </head>
+  <body>
+    <h1>CRM help guide</h1>
+    <p>Ask a synthetic support question from inside this iframe.</p>
+    <form id="help-form" data-testid="crm-help-form">
+      <label for="help-topic">Topic
+        <select id="help-topic" name="topic" required>
+          <option value="">Select</option>
+          <option value="leads">Leads</option>
+          <option value="pipeline">Pipeline</option>
+          <option value="calendar">Calendar</option>
+        </select>
+      </label>
+      <label for="help-q">Question
+        <textarea id="help-q" name="question" rows="3" required></textarea>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="help-result" hidden></p>
+    <script>
+      document.getElementById("help-form").addEventListener("submit", function (e) {
+        e.preventDefault()
+        var r = document.getElementById("help-result")
+        r.hidden = false
+        r.textContent = "Ticket created (simulated)."
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nested CRM frame host</title>
+    <style>body{font-family:system-ui,sans-serif;margin:1rem}iframe.host{width:100%;height:340px;border:1px solid #ccc}</style>
+  </head>
+  <body>
+    <h1>Nested frame host</h1>
+    <p>Outer host embeds the activity summary frame.</p>
+    <iframe class="host" title="Activity summary host" name="activity-summary-host" id="activity-summary-host" src="activity-summary.html" data-testid="activity-summary-host-frame"></iframe>
+    <p><a href="support.html" target="activity-summary-host">Load support into host</a></p>
+  </body>
+</html>

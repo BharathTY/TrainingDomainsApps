@@ -11,7 +11,7 @@ import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
 export type DrawerField =
-  | { name: string; label: string; type: "text" | "email" | "tel" | "number" | "date"; placeholder?: string }
+  | { name: string; label: string; type: "text" | "email" | "tel" | "number" | "date" | "time" | "datetime-local"; placeholder?: string }
   | { name: string; label: string; type: "textarea"; placeholder?: string }
   | { name: string; label: string; type: "select"; placeholder?: string; options: { label: string; value: string }[] }
   | { name: string; label: string; type: "switch" }

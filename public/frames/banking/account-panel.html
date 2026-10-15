@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Account information panel</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      label { display: block; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Account information panel</h1>
+    <form id="account-panel-form" data-testid="account-panel-form">
+      <label for="panel-account">Account
+        <select id="panel-account" name="account">
+          <option value="savings">Everyday savings</option>
+          <option value="current">Business current</option>
+        </select>
+      </label>
+      <label for="panel-nickname">Nickname
+        <input id="panel-nickname" name="nickname" type="text" value="Everyday savings">
+      </label>
+      <button type="submit">Update panel</button>
+    </form>
+    <p id="panel-status" data-testid="panel-status">Ready</p>
+    <script>
+      document.getElementById("account-panel-form").addEventListener("submit", function (event) {
+        event.preventDefault()
+        var nickname = document.getElementById("panel-nickname").value
+        document.getElementById("panel-status").textContent = "Updated nickname to " + nickname
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: "banking-account-panel", nickname: nickname }, "*")
+        }
+      })
+    </script>
+  </body>
+</html>

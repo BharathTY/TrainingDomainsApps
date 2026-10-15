@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Embedded asset information</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      table { border-collapse: collapse; width: 100%; margin-top: 0.5rem; }
+      th, td { border: 1px solid #ccc; padding: 0.35rem 0.5rem; text-align: left; }
+      iframe.nested { width: 100%; height: 160px; border: 1px solid #ccc; margin-top: 0.5rem; }
+      label { display: block; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Asset technical specifications</h1>
+      <p>Training record — not production asset data.</p>
+    </header>
+    <main>
+      <section>
+        <h2>Warranty</h2>
+        <p>Warranty ends <time datetime="2027-01-15">15-Jan-2027</time>.</p>
+      </section>
+      <section>
+        <h2>Maintenance instructions</h2>
+        <ol>
+          <li>Power down safely.</li>
+          <li>Replace filter kit if due.</li>
+          <li>Record actual cost on the work order.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Interactive checklist</h2>
+        <form id="frame-asset-form" data-testid="frame-asset-form">
+          <label>Technician
+            <input id="frame-tech" name="technician" type="text" required value="tech">
+          </label>
+          <label>Parts used
+            <input id="frame-parts" name="parts" type="text" list="parts-list" value="Filter kit">
+            <datalist id="parts-list">
+              <option value="Filter kit"></option>
+              <option value="Battery pack"></option>
+              <option value="SSD module"></option>
+            </datalist>
+          </label>
+          <button type="submit" id="frame-asset-submit" data-testid="frame-asset-submit">Log service</button>
+        </form>
+        <p id="frame-asset-result" data-testid="frame-asset-result" aria-live="polite"></p>
+      </section>
+      <p>Searchable parts (nested frame):</p>
+      <iframe class="nested" title="Parts catalogue nested" name="parts-nested" id="parts-nested" src="parts.html" data-testid="nested-parts-frame"></iframe>
+    </main>
+    <script>
+      document.getElementById("frame-asset-form").addEventListener("submit", function (event) {
+        event.preventDefault()
+        var parts = document.getElementById("frame-parts").value
+        document.getElementById("frame-asset-result").textContent = "Logged synthetic service with " + parts
+      })
+    </script>
+  </body>
+</html>

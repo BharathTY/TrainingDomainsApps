@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nested banking frame host</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      iframe.host { width: 100%; height: 340px; border: 1px solid #ccc; }
+    </style>
+  </head>
+  <body>
+    <h1>Nested frame host</h1>
+    <p>Outer host embeds the transaction summary, which can open the account panel.</p>
+    <iframe
+      class="host"
+      title="Transaction summary host"
+      name="txn-summary-host"
+      id="txn-summary-host"
+      src="txn-summary.html"
+      data-testid="txn-summary-host-frame"
+    ></iframe>
+    <p><a href="account-panel.html" target="txn-summary-host">Load account panel into host</a></p>
+  </body>
+</html>

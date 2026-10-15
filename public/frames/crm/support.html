@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CRM support</title>
+    <style>body{font-family:system-ui,sans-serif;margin:1rem}label{display:block;margin-top:.5rem}</style>
+  </head>
+  <body>
+    <h1>Contact support</h1>
+    <form id="support-form" data-testid="crm-support-form">
+      <label for="support-email">Email
+        <input id="support-email" name="email" type="email" required>
+      </label>
+      <label for="support-priority">Priority
+        <select id="support-priority" name="priority">
+          <option value="low">Low</option>
+          <option value="normal" selected>Normal</option>
+          <option value="high">High</option>
+        </select>
+      </label>
+      <button type="submit">Send</button>
+    </form>
+    <p id="support-result" hidden></p>
+    <script>
+      document.getElementById("support-form").addEventListener("submit", function (e) {
+        e.preventDefault()
+        var r = document.getElementById("support-result")
+        r.hidden = false
+        r.textContent = "Support request queued (simulated)."
+      })
+    </script>
+  </body>
+</html>

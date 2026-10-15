@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nested retail frame host</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      iframe.host { width: 100%; height: 320px; border: 1px solid #ccc; }
+    </style>
+  </head>
+  <body>
+    <h1>Nested frame host</h1>
+    <p>Outer host embeds inventory preview for nested iframe practice.</p>
+    <iframe
+      class="host"
+      title="Inventory preview host"
+      name="inventory-preview-host"
+      id="inventory-preview-host"
+      src="inventory-preview.html"
+      data-testid="inventory-preview-host-frame"
+    ></iframe>
+  </body>
+</html>

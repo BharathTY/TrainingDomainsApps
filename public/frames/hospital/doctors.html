@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Doctor directory frame</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ccc; padding: 0.35rem 0.5rem; text-align: left; }
+      iframe.nested { width: 100%; height: 140px; border: 1px solid #ccc; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Doctor directory</h1>
+    <p>Synthetic doctors for frame-switching practice.</p>
+    <table data-testid="frame-doctor-table">
+      <caption>Available consultants</caption>
+      <thead>
+        <tr>
+          <th scope="col">Doctor ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Specialization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-doctor-id="D00001">
+          <td>D00001</td>
+          <td>Dr. Priya Nair</td>
+          <td>General Medicine</td>
+        </tr>
+        <tr data-doctor-id="D00002">
+          <td>D00002</td>
+          <td>Dr. Rohan Mehta</td>
+          <td>Cardiology</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Appointment details (nested):</p>
+    <iframe
+      class="nested"
+      title="Appointment details nested"
+      name="appointment-details-nested"
+      id="appointment-details-nested"
+      src="appointments.html"
+      data-testid="nested-appointment-frame"
+    ></iframe>
+  </body>
+</html>

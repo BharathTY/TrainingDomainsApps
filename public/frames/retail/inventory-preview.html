@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Inventory preview</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      table { border-collapse: collapse; width: 100%; margin-top: 0.75rem; }
+      th, td { border: 1px solid #ccc; padding: 0.35rem 0.5rem; text-align: left; }
+      label { display: block; margin-top: 0.75rem; }
+      input { max-width: 16rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Store stock preview</h1>
+      <p>Embedded inventory snapshot for iframe drills.</p>
+    </header>
+    <main>
+      <label>Filter SKU
+        <input id="inv-filter" name="skuFilter" type="search" placeholder="SKU prefix">
+      </label>
+      <table data-testid="inventory-preview-table">
+        <caption>Sample shelf quantities</caption>
+        <thead>
+          <tr>
+            <th scope="col">SKU</th>
+            <th scope="col">Product</th>
+            <th scope="col">Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SKU-1001</td>
+            <td>Training cereal</td>
+            <td>24</td>
+          </tr>
+          <tr>
+            <td>SKU-1002</td>
+            <td>Training detergent</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>SKU-1003</td>
+            <td>Training snacks</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

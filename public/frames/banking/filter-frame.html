@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Statement filter frame</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      label { display: block; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Filter frame</h1>
+    <form id="filter-form" data-testid="filter-form">
+      <label for="filter-type">Type
+        <select id="filter-type" name="type">
+          <option value="all">All</option>
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+      </label>
+      <button type="submit">Apply filter</button>
+    </form>
+    <p id="filter-result" data-testid="filter-result">No filter applied</p>
+    <script>
+      document.getElementById("filter-form").addEventListener("submit", function (event) {
+        event.preventDefault()
+        var type = document.getElementById("filter-type").value
+        document.getElementById("filter-result").textContent = "Applied filter: " + type
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: "banking-filter", value: type }, "*")
+        }
+      })
+    </script>
+  </body>
+</html>

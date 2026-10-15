@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Banking help center</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      label { display: block; margin-top: 0.5rem; }
+      input, select, button, textarea { margin-top: 0.25rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Help center</h1>
+    <p>Ask a synthetic banking question. Form lives inside this iframe.</p>
+    <form id="help-form" data-testid="help-form">
+      <label for="help-topic">Topic
+        <select id="help-topic" name="topic" required>
+          <option value="">Select topic</option>
+          <option value="transfers">Transfers</option>
+          <option value="statements">Statements</option>
+          <option value="security">Security</option>
+        </select>
+      </label>
+      <label for="help-question">Question
+        <textarea id="help-question" name="question" rows="3" required></textarea>
+      </label>
+      <button type="submit">Submit question</button>
+    </form>
+    <p id="help-result" hidden></p>
+    <script>
+      document.getElementById("help-form").addEventListener("submit", function (event) {
+        event.preventDefault()
+        var result = document.getElementById("help-result")
+        result.hidden = false
+        result.textContent = "Ticket created (simulated). A banker will reply in this demo."
+      })
+    </script>
+  </body>
+</html>

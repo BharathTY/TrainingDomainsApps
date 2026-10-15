@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Activity summary</title>
+    <style>body{font-family:system-ui,sans-serif;margin:1rem}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:.35rem;text-align:left}</style>
+  </head>
+  <body>
+    <h1>Embedded activity summary</h1>
+    <label for="summary-owner">Owner
+      <select id="summary-owner" name="owner" data-testid="summary-owner">
+        <option value="all">All</option>
+        <option value="rep1">Vikram Rep</option>
+        <option value="rep2">Meera Rep</option>
+      </select>
+    </label>
+    <button type="button" id="refresh-summary" data-testid="refresh-summary">Refresh</button>
+    <table>
+      <caption>Read-only training summary</caption>
+      <thead><tr><th scope="col">Metric</th><th scope="col">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Planned</td><td id="planned">12</td></tr>
+        <tr><td>Completed</td><td id="completed">8</td></tr>
+        <tr><td>Overdue</td><td id="overdue">3</td></tr>
+      </tbody>
+    </table>
+    <script>
+      document.getElementById("refresh-summary").addEventListener("click", function () {
+        var owner = document.getElementById("summary-owner").value
+        document.getElementById("planned").textContent = owner === "all" ? "12" : "5"
+        document.getElementById("completed").textContent = owner === "all" ? "8" : "3"
+        document.getElementById("overdue").textContent = owner === "all" ? "3" : "1"
+      })
+    </script>
+  </body>
+</html>

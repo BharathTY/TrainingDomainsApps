@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Patient summary frame</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ccc; padding: 0.35rem 0.5rem; text-align: left; }
+      iframe.nested { width: 100%; height: 180px; border: 1px solid #ccc; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="patient-summary-heading">Patient summary</h1>
+      <p>Training record — not clinical data.</p>
+    </header>
+    <main>
+      <table data-testid="patient-summary-table">
+        <caption>Synthetic patient chart</caption>
+        <thead>
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-row="patient-no"><th scope="row">Patient ID</th><td id="frame-patient-no">P00001</td></tr>
+          <tr data-row="name"><th scope="row">Name</th><td id="frame-patient-name">Ananya Sharma</td></tr>
+          <tr data-row="status"><th scope="row">Admission</th><td>Outpatient</td></tr>
+        </tbody>
+      </table>
+      <p>Nested doctor directory:</p>
+      <iframe
+        class="nested"
+        title="Doctor directory nested"
+        name="doctor-directory-nested"
+        id="doctor-directory-nested"
+        src="doctors.html"
+        data-testid="nested-doctor-frame"
+      ></iframe>
+    </main>
+  </body>
+</html>

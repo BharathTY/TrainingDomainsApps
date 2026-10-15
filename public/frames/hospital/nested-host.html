@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Nested appointments host</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      iframe.host { width: 100%; height: 320px; border: 1px solid #ccc; }
+    </style>
+  </head>
+  <body>
+    <h1>Nested frame host</h1>
+    <p>Outer host embeds patient summary, which nests doctor directory and appointments.</p>
+    <iframe
+      class="host"
+      title="Patient summary host"
+      name="patient-summary-host"
+      id="patient-summary-host"
+      src="patient-summary.html"
+      data-testid="patient-summary-host-frame"
+    ></iframe>
+  </body>
+</html>

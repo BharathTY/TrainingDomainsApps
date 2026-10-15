@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Transaction summary frame</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ccc; padding: 0.35rem; text-align: left; }
+    </style>
+  </head>
+  <body>
+    <h1>Framed transaction summary</h1>
+    <label for="summary-range">Range
+      <select id="summary-range" name="range" data-testid="summary-range">
+        <option value="7">Last 7 days</option>
+        <option value="30">Last 30 days</option>
+      </select>
+    </label>
+    <button type="button" id="refresh-summary" data-testid="refresh-summary">Refresh</button>
+    <table id="summary-table">
+      <caption>Sample credits and debits</caption>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Amount</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Credits</td><td id="credits">₹42,000</td></tr>
+        <tr><td>Debits</td><td id="debits">₹18,500</td></tr>
+      </tbody>
+    </table>
+    <script>
+      document.getElementById("refresh-summary").addEventListener("click", function () {
+        var range = document.getElementById("summary-range").value
+        document.getElementById("credits").textContent = range === "7" ? "₹12,400" : "₹42,000"
+        document.getElementById("debits").textContent = range === "7" ? "₹5,200" : "₹18,500"
+      })
+    </script>
+  </body>
+</html>

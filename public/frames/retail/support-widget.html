@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Retail support widget</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1rem; }
+      .widget { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; max-width: 22rem; }
+      label { display: block; margin-top: 0.5rem; }
+      input, select { width: 100%; margin-top: 0.25rem; }
+      button { margin-top: 0.75rem; }
+    </style>
+  </head>
+  <body>
+    <div class="widget" data-testid="support-widget">
+      <h1>Store help</h1>
+      <form id="support-form">
+        <label>Issue type
+          <select id="support-type" name="issueType">
+            <option value="pos">POS</option>
+            <option value="inventory">Inventory</option>
+            <option value="returns">Returns</option>
+          </select>
+        </label>
+        <label>Store code
+          <input id="support-store" name="storeCode" type="text" required value="ST-01">
+        </label>
+        <button type="submit" id="support-submit" data-testid="support-widget-submit">Request callback</button>
+      </form>
+      <p id="support-result" aria-live="polite"></p>
+    </div>
+    <script>
+      document.getElementById("support-form").addEventListener("submit", function (event) {
+        event.preventDefault()
+        document.getElementById("support-result").textContent = "Callback queued (training)"
+      })
+    </script>
+  </body>
+</html>
